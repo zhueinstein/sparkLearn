@@ -8,7 +8,11 @@ import org.apache.spark.{SparkConf, SparkContext}
   */
 object SoGouObject {
 	def main(args: Array[String]): Unit = {
-		if()
+		if(args.isEmpty || args.size < 2){
+			System.out.println("Usage:<file1><file2>")
+			System.exit(-1)
+		}
+
 		val con = new SparkConf().setAppName("SoGouResult").setMaster("Local")
 		val sc = new SparkContext(con)
 		val rdd1 = sc.textFile(args(0)).map(_.split("\t")).filter(_.length == 6)
